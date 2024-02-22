@@ -3,6 +3,9 @@ package com.aharrar.cinema.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,10 +29,13 @@ public class Salle implements Serializable{
 	private String name;
 	private int nombrePlace;
 	@ManyToOne
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Cinema cinema;
 	@OneToMany(mappedBy = "salle")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Collection<Place> places;
 	@OneToMany(mappedBy = "salle")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Collection<Projection> projections;
 	
 	
